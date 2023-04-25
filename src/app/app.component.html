@@ -1,0 +1,115 @@
+<mat-toolbar color="primary">
+  <mat-icon>public</mat-icon>
+  <span>Global Poverty and Practice Minor Database</span>
+</mat-toolbar>
+
+<div class="container-wrapper">
+  <div class="image-container">
+    <img src="https://blumcenter.berkeley.edu/wp-content/uploads/2021/04/BlumCenterLogoRevised-1.png" alt="Example image">
+  </div>
+  <div class="info-container">
+    <p>
+      Email <a href="mailto:wluo329@berkeley.edu">wluo329@berkeley.edu</a> for any questions or inquiries.
+    </p>
+  </div>
+</div>
+
+<div class="container-wrapper">
+  <div class="container">
+    <div class="instructions">
+      <p>Use the search bar to find organizations related to the Global Poverty and Practice Minor.</p>
+      <p>Add a review for your GPP organization by clicking "Add Review" below.</p>
+    </div>
+    <div class="search-bar-container">
+      <mat-form-field>
+        <input matInput placeholder="Search for an organization">
+      </mat-form-field>
+    </div>
+    <button (click)="newTask()" mat-button>
+      <mat-icon>add</mat-icon> Add Review
+    </button>
+    <h2>GPP Orgs Reviews</h2>
+
+    <mat-card
+      cdkDropList
+      id="todo"
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[]"
+      (cdkDropListDropped)="drop($event)"
+      class="list">
+      <p class="empty-label" *ngIf="todo.length === 0">Empty list</p>
+      <app-task (edit)="editTask('todo', $event)" *ngFor="let task of todo" cdkDrag [task]="task"></app-task>
+    </mat-card>
+  </div>
+</div>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  .background-image {
+  background-image: url('./garrett-parker-DlkF4-dbCOU-unsplash.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 200px;
+  height: 100vh;
+}
+  .container-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+  }
+  .container {
+    width: 100%;
+    max-width: 600px;
+  }
+  .list {
+    border: 1px solid #ccc;
+    min-height: 50px;
+    padding: 8px;
+  }
+  .empty-label {
+    margin: 0;
+  }
+  .image-container {
+    width: 50%;
+    max-width: 600px;
+    margin-right: 24px;
+  }
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  .info-container {
+    width: 50%;
+    max-width: 600px;
+    margin-left: 24px;
+    font-size: 1.2em;
+    line-height: 1.4;
+    color: #555;
+  }
+  .info-container a {
+    color: #f39c12;
+    text-decoration: none;
+  }
+  .info-container a:hover {
+    text-decoration: underline;
+  }
+  button {
+    margin-bottom: 12px;
+  }
+  .search-bar-container {
+    margin-bottom: 12px;
+  }
+  .instructions {
+    margin-bottom: 12px;
+  }
+</style>
+
